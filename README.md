@@ -1,10 +1,14 @@
 # E-commerce Automation Framework 🚀
 
-A modern, scalable Selenium WebDriver automation framework built in Python. Features include a modular Page Object Model (POM) and robust HTML reporting using Pytest.
+A modern, scalable Selenium WebDriver automation framework built in Python. Features include a modular Page Object Model (POM) and robust, portfolio-style HTML reporting.
 
 ---
 
-## 📸 Demo
+### ⚡ Quick Actions
+[![View Live Report](https://img.shields.io/badge/📊_Test_Reporting-Live_Dashboard-10b981?style=for-the-badge&logo=github)](https://ans422.github.io/ecommerce-automation-framework/report.html)
+[![Open in GitHub Codespaces](https://img.shields.io/badge/🚀_Run_Project-Open_in_Codespaces-3b82f6?style=for-the-badge&logo=githubcodespaces)](https://github.com/codespaces/new/ans422/ecommerce-automation-framework?hide_repo_select=true&ref=main)
+
+---
 Watch the automated login test in action:
 
 ![Automated Login Demo](assets/demo.webp)
