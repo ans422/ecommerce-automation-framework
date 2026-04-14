@@ -591,6 +591,7 @@ table#environment th {
 table#environment td {
   color: #000000 !important;
   font-weight: 500;
+  text-transform: uppercase;
 }
 /* Tables */
 table#results-table {
@@ -679,6 +680,10 @@ table#results-table tbody tr:hover td {
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
   align-items: center;
+}
+
+.collapse {
+  display: none !important;
 }
 
 .filters button, .collapse button {
