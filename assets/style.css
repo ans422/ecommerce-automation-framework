@@ -518,15 +518,16 @@ h2 {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
 }
 
-.summary h2 {
-  margin: 0;
+.summary h2, .report-summary-heading {
+  margin: 0 0 1.5rem 0;
   text-align: left;
-  font-size: 1.25rem;
-  color: #94a3b8;
+  font-size: 1.5rem;
+  color: #ffffff; /* Bright white for visibility */
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border: none;
-  padding: 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
 }
 
 .summary .summary__data {
