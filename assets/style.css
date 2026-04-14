@@ -551,6 +551,32 @@ h2 {
 .skipped { color: #94a3b8; font-weight: 600; } /* text-slate-400 font-semibold */
 .xfailed, .xpassed { color: #fbbf24; font-weight: 600; } /* text-amber-400 font-semibold */
 
+/* Environment Table Styling */
+table#environment {
+  width: 100%;
+  margin-bottom: 2.5rem;
+  background-color: rgba(15, 23, 42, 0.4);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-spacing: 0;
+  color: #ffffff !important; /* Force white text */
+}
+table#environment th, table#environment td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+  color: #ffffff !important;
+}
+table#environment th {
+  background-color: rgba(30, 41, 59, 0.6);
+  color: #94a3b8 !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
 /* Tables */
 table#results-table {
   width: 100%;
