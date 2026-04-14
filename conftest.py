@@ -23,7 +23,8 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
                 <div class="header-logo"><span class="code-bracket">&lt;/&gt;</span> ANS422 <span>Automation Portfolio</span></div>
                 <nav class="header-nav">
                     <a href="https://github.com/ans422/ecommerce-automation-framework" target="_blank">GitHub Repo</a>
-                    <a href="#">Report Summary</a>
+                    <a href="#portfolio-summary">Report Summary</a>
+                    <a href="#results-table">Detailed Results</a>
                 </nav>
             </div>
         `;
@@ -45,6 +46,7 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
         const summaryData = document.querySelector(".summary__data");
         if (summaryData) {
             const summaryContainer = document.querySelector(".summary");
+            if (summaryContainer) summaryContainer.id = "portfolio-summary";
             
             // Extract all status spans
             const spans = Array.from(summaryData.querySelectorAll("span"));
