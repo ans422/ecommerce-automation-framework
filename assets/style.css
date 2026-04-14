@@ -500,47 +500,53 @@ h2 {
 
 /* Layout structures */
 .summary {
-  display: grid;
-  gap: 1rem;
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem;
   background-color: rgba(15, 23, 42, 0.4);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+.summary h2 {
+  margin: 0;
+  text-align: left;
+  font-size: 1.25rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  padding: 0;
 }
 
 .summary .summary__data {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* gap-4 */
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 500; /* font-medium */
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .summary .summary__data span {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
   background-color: rgba(30, 41, 59, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.summary .summary__data span:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .summary .summary__reload {
-  padding: 0.5rem 1rem; /* px-4 py-2 */
-  background-color: #2563eb; /* bg-blue-600 */
-  color: #ffffff; /* text-white */
-  border-radius: 0.5rem; /* rounded-lg */
-  transition: background-color 0.2s;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+  margin-top: 1rem;
   align-self: flex-start;
-  font-size: 0.875rem; /* text-sm */
-  text-decoration: none;
-}
-.summary .summary__reload:hover {
-  background-color: #3b82f6; /* hover:bg-blue-500 */
 }
 
 /* Status Text Colors */
