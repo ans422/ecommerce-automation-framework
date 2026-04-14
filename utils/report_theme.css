@@ -266,7 +266,7 @@ table#environment th {
 table#environment td {
   color: #000000 !important;
   font-weight: 500;
-  text-transform: uppercase;
+  text-transform: uppercase; /* Capitalized as requested */
 }
 /* Tables */
 table#results-table {
@@ -357,11 +357,11 @@ table#results-table tbody tr:hover td {
   align-items: center;
 }
 
-.collapse {
-  display: none !important;
+.collapse button {
+  display: none !important; /* Removed as requested */
 }
 
-.filters button, .collapse button {
+.filters button {
   background: rgba(255, 255, 255, 0.05) !important;
   color: #e2e8f0 !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
