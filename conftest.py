@@ -108,7 +108,7 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
                         heading = document.createElement("h2");
                         summaryContainer.insertBefore(heading, summaryContainer.firstChild);
                     }
-                    heading.innerText = "Summary";
+                    heading.innerText = "Report Summary";
                     heading.style.marginTop = "0";
                     
                     summaryContainer.appendChild(table);
