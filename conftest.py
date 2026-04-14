@@ -41,7 +41,78 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
         });
         body.appendChild(main);
         
-        // 3. (Restored original summary display)
+        // 3. Professional Summary to Table Transformation
+        const summaryData = document.querySelector(".summary__data");
+        if (summaryData) {
+            const summaryContainer = document.querySelector(".summary");
+            
+            // Extract all status spans
+            const spans = Array.from(summaryData.querySelectorAll("span"));
+            if (spans.length > 0) {
+                const table = document.createElement("table");
+                table.className = "summary-table";
+                table.id = "summary-results-table";
+                
+                let rowsHTML = "";
+                
+                // 1. Process main summary text (usually first span or textNode)
+                const mainText = summaryData.innerText || summaryData.textContent;
+                const timeMatch = mainText.match(/(\d+\.?\d*)\s*(seconds|minutes|s|m)/i);
+                const countMatch = mainText.match(/(\d+)\s*tests/i);
+
+                if (countMatch) {
+                    rowsHTML += `<tr><td>TOTAL TESTS</td><td class="count-cell">${countMatch[1]}</td></tr>`;
+                }
+                if (timeMatch) {
+                    rowsHTML += `<tr><td>TOTAL RUNTIME</td><td class="count-cell">${timeMatch[1]} ${timeMatch[2]}</td></tr>`;
+                }
+
+                // 2. Process status breakdowns
+                spans.forEach(span => {
+                    const statusText = span.innerText || span.textContent;
+                    // Look for patterns like "5 passed", "1 failed" etc
+                    const parts = statusText.trim().split(/\s+/);
+                    if (parts.length >= 2 && !isNaN(parts[0])) {
+                        const count = parts[0];
+                        const label = parts.slice(1).join(" ").replace(/[\(\),]/g, "").trim();
+                        if (label.toLowerCase() !== "tests") {
+                            rowsHTML += `
+                                <tr class="${span.className}">
+                                    <td>${label.toUpperCase()}</td>
+                                    <td class="count-cell">${count}</td>
+                                </tr>
+                            `;
+                        }
+                    }
+                });
+
+                if (rowsHTML) {
+                    table.innerHTML = `
+                        <thead>
+                            <tr>
+                                <th>Test Metric</th>
+                                <th>Value / Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>${rowsHTML}</tbody>
+                    `;
+                    
+                    // Transform UI
+                    summaryData.style.display = "none";
+                    
+                    // Update header if exists, or create
+                    let heading = summaryContainer.querySelector("h2");
+                    if (!heading) {
+                        heading = document.createElement("h2");
+                        summaryContainer.insertBefore(heading, summaryContainer.firstChild);
+                    }
+                    heading.innerText = "Execution Summary Analysis";
+                    heading.style.marginTop = "0";
+                    
+                    summaryContainer.appendChild(table);
+                }
+            }
+        }
 
         // 4. Setup Portfolio Footer
         const footer = document.createElement("footer");
