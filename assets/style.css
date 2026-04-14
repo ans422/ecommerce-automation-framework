@@ -323,8 +323,9 @@ div.media {
  * utils/report_theme.css
  ******************************/
 
-/* report_theme.css - Portfolio Tech Aesthetic */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;600;800&display=swap');
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: #020617;
