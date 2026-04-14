@@ -81,8 +81,13 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
             tableHTML += "</tbody>";
             table.innerHTML = tableHTML;
             
-            // Clear old summary data and append table
-            summaryData.style.display = "none"; 
+            // Append heading and table
+            summaryData.style.display = "none";
+            
+            const heading = document.createElement("h2");
+            heading.innerText = "Test Results Analysis";
+            heading.style.marginTop = "0";
+            summaryContainer.insertBefore(heading, table);
             summaryContainer.appendChild(table);
         }
 
