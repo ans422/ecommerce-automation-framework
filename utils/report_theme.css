@@ -228,42 +228,43 @@ h2 {
 
 /* Tables */
 table#results-table {
-  width: 100%; /* w-full */
+  width: 100%;
   text-align: left;
-  background-color: rgba(30, 41, 59, 0.8); /* bg-slate-800/80 */
-  border-radius: 0.75rem; /* rounded-xl */
+  background-color: rgba(15, 23, 42, 0.4); /* Deeper translucent background */
+  border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
-  border: 1px solid rgba(51, 65, 85, 0.5); /* border-slate-700/50 */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Clean thin border */
   border-spacing: 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
 }
 table#results-table thead {
-  background-color: #1e293b; /* bg-slate-800 */
+  background-color: rgba(30, 41, 59, 0.6); /* Slightly lighter header */
 }
 table#results-table th {
-  font-size: 0.75rem; /* text-xs */
-  font-weight: 600; /* font-semibold */
-  color: #cbd5e1; /* text-slate-300 */
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.1em; /* tracking-widest */
-  padding: 1rem 1.5rem; /* px-6 py-4 */
-  border-bottom: 1px solid #475569; /* border-slate-600 */
+  letter-spacing: 0.1em;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 table#results-table td {
-  padding: 1rem 1.5rem; /* px-6 py-4 */
-  font-size: 0.875rem; /* text-sm */
-  color: #cbd5e1; /* text-slate-300 */
-  border-bottom: 1px solid rgba(51, 65, 85, 0.5); /* border-slate-700/50 */
-  transition: background-color 0.2s;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle row separation */
+  transition: all 0.2s;
 }
 
-/* Table Rows by Status */
-table#results-table tr.passed td { background-color: rgba(6, 78, 59, 0.1); } /* bg-emerald-900/10 */
-table#results-table tr.failed td { background-color: rgba(136, 19, 55, 0.1); } /* bg-rose-900/10 */
-table#results-table tr.error td { background-color: rgba(124, 45, 18, 0.1); } /* bg-orange-900/10 */
+/* Table Rows by Status - Using slightly more vibrant accents */
+table#results-table tr.passed td { background-color: rgba(16, 185, 129, 0.03); } 
+table#results-table tr.failed td { background-color: rgba(244, 63, 94, 0.03); } 
+table#results-table tr.error td { background-color: rgba(245, 158, 11, 0.03); } 
 
 table#results-table tbody tr:hover td {
-  background-color: rgba(51, 65, 85, 0.4); /* bg-slate-700/40 */
+  background-color: rgba(255, 255, 255, 0.05); /* Clean hover effect */
+  color: #ffffff;
 }
 
 /* Filters */
