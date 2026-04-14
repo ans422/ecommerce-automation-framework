@@ -99,19 +99,11 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
                         <tbody>${rowsHTML}</tbody>
                     `;
                     
-                    // Transform UI
-                    summaryData.style.display = "none";
-                    
-                    // Update header if exists, or create
-                    let heading = summaryContainer.querySelector("h2");
-                    if (!heading) {
-                        heading = document.createElement("h2");
-                        summaryContainer.insertBefore(heading, summaryContainer.firstChild);
-                    }
-                    heading.innerText = "Report Summary";
-                    heading.style.marginTop = "0";
-                    
-                    summaryContainer.appendChild(table);
+                    // Transform UI and Inject Heading + Table
+                    summaryContainer.innerHTML = `
+                        <h2 class="report-summary-heading">Report Summary</h2>
+                        ${table.outerHTML}
+                    `;
                 }
             }
         }
