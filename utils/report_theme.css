@@ -377,20 +377,57 @@ table#results-table tbody tr:hover td {
   width: auto;
 }
 
-/* Logs Sections */
+/* Logs & Captured Output Sections */
 .log {
-  background-color: #000000; /* Solid black for perfect text contrast */
-  color: #cbd5e1; /* text-slate-300 */
-  padding: 1.25rem; /* p-5 */
-  border-radius: 0.5rem; /* rounded-lg */
-  font-size: 0.75rem; /* text-xs */
-  line-height: 1.625; /* leading-relaxed */
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: #e2e8f0; /* Light gray background for the actual log text */
+  color: #0f172a; /* Dark professional blue/black text for readability */
+  padding: 1.5rem;
+  border-radius: 0 0 1rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  font-family: 'Fira Code', ui-monospace, monospace;
   overflow-x: auto;
-  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05); /* shadow-inner */
-  border: 1px solid #334155; /* border-slate-700 */
-  margin-top: 1rem; /* mt-4 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  margin-bottom: 1.5rem;
   white-space: pre-wrap;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Style for the expandable "Captured stdout/stderr" bars */
+details {
+  margin-top: 1rem;
+}
+
+summary {
+  background-color: #0f172a; /* Deep black/blue for the header bar */
+  color: #ffffff !important; /* Force white text for the title */
+  padding: 1rem 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  list-style: none; /* Hide default arrow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s;
+}
+
+summary:hover {
+  background-color: #1e293b;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Handle the expand/collapse text visibility if it's a separate span */
+summary span {
+  color: #10b981 !important; /* Make "expand [+]" a nice accent color */
 }
 
 input[type="checkbox"] {
