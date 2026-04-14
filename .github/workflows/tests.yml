@@ -25,7 +25,7 @@ jobs:
         pip install -r requirements.txt
     - name: Test with pytest
       run: |
-        pytest -n auto -v --html=reports/report.html
+        pytest -n auto -v --html=reports/report.html --css=utils/report_theme.css
     - name: Upload Report
       uses: actions/upload-artifact@v4
       if: always()
