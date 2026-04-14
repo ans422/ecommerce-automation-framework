@@ -617,35 +617,76 @@ table#results-table tbody tr:hover td {
   color: #ffffff;
 }
 
-/* Filters */
-.filters {
+/* Summary Table Styling */
+#summary-results-table {
+  width: 100%;
+  background-color: rgba(15, 23, 42, 0.4);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-spacing: 0;
+  margin-top: 1rem;
+}
+#summary-results-table th, #summary-results-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+}
+#summary-results-table th {
+  background-color: rgba(30, 41, 59, 0.6);
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+#summary-results-table td.count-cell {
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Filters and Collapse Buttons */
+.filters, .collapse {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* gap-4 */
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  background-color: rgba(30, 41, 59, 0.5); /* bg-slate-800/50 */
-  padding: 1rem; /* p-4 */
-  border-radius: 0.75rem; /* rounded-xl */
-  border: 1px solid rgba(51, 65, 85, 0.5); /* border-slate-700/50 */
+  gap: 0.75rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: rgba(15, 23, 42, 0.3);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  align-items: center;
 }
+
+.filters button, .collapse button {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 0.75rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.filters button:hover, .collapse button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #ffffff !important;
+}
+
 .filter {
-  flex: 1 1 0%;
-  text-align: center;
-  padding: 0.5rem 1rem; /* py-2 px-4 */
-  background-color: #0f172a; /* bg-slate-900 */
-  border: 1px solid #475569; /* border-slate-600 */
-  border-radius: 0.5rem; /* rounded-lg */
-  font-size: 0.875rem; /* text-sm */
-  cursor: pointer;
-  transition: all 0.2s;
-  color: #cbd5e1; /* text-slate-300 */
-  font-weight: 500;
-}
-.filter:hover {
-  background-color: #334155; /* bg-slate-700 */
-  border-color: #64748b; /* border-slate-500 */
-  color: #ffffff; /* text-white */
+  flex: none;
+  width: auto;
 }
 
 /* Logs Sections */
