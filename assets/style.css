@@ -327,17 +327,51 @@ div.media {
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;600;800&display=swap');
 
 body {
-  background-color: #050505;
+  background-color: #020617; /* Very deep slate */
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.05), transparent 60%),
-    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.05), transparent 60%),
-    linear-gradient(to bottom, #050505, #0f172a);
-  color: #e2e8f0; /* text-slate-200 */
+    radial-gradient(ellipse at top right, rgba(56, 189, 248, 0.12), transparent 45%),
+    radial-gradient(ellipse at bottom left, rgba(16, 185, 129, 0.12), transparent 45%),
+    radial-gradient(ellipse at center, rgba(139, 92, 246, 0.05), transparent 60%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  color: #f8fafc;
   font-family: 'Outfit', system-ui, -apple-system, sans-serif;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   position: relative;
+  overflow-x: hidden;
+}
+
+/* Coding visual overlay fixed to the right side (won't conflict with text) */
+body::after {
+  content: 'run_tests( { environment: "CI/CD" } );';
+  position: fixed;
+  top: 40%;
+  right: -15rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 6rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.02);
+  transform: rotate(90deg);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Coding visual overlay fixed to the left side */
+body::before {
+  content: '< AUTOMATION />';
+  position: fixed;
+  bottom: 20%;
+  left: -10rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(56, 189, 248, 0.02);
+  transform: rotate(-90deg);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 /* Universal text resets */
