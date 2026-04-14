@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1 id="title">report.html</h1>
-    <p>Report generated on 14-Apr-2026 at 20:32:15 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+    <p>Report generated on 14-Apr-2026 at 20:34:41 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
         v4.2.0</p>
     <div id="environment-header">
       <h2>Environment</h2>
@@ -63,117 +63,109 @@
         <div class="additional-summary prefix">
           
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const body = document.body;
-        
-        // 1. Setup Portfolio Header
-        const header = document.createElement("header");
-        header.className = "portfolio-header";
-        header.innerHTML = `
-            <div class="header-container">
-                <div class="header-logo"><span class="code-bracket">&lt;/&gt;</span> ANS422 <span>Automation Portfolio</span></div>
-                <nav class="header-nav">
-                    <a href="https://github.com/ans422/ecommerce-automation-framework" target="_blank">GitHub Repo</a>
-                    <a href="#portfolio-summary">Report Summary</a>
-                    <a href="#results-table">Detailed Results</a>
-                </nav>
-            </div>
-        `;
-        body.insertBefore(header, body.firstChild);
-        
-        // 2. Wrap existing contents in <main>
-        const main = document.createElement("main");
-        main.className = "portfolio-main";
-        // Grab all children except our newly injected header
-        const children = Array.from(body.childNodes);
-        children.forEach(child => {
-            if(child !== header && child.tagName !== 'SCRIPT') {
-                main.appendChild(child);
-            }
-        });
-        body.appendChild(main);
-        
-        // 3. Professional Summary to Table Transformation
-        const summaryData = document.querySelector(".summary__data");
-        if (summaryData) {
-            const summaryContainer = document.querySelector(".summary");
-            if (summaryContainer) summaryContainer.id = "portfolio-summary";
+    /**
+     * Professional Automation Dashboard - DOM Transformation Logic
+     * Responsibilities: Header/Footer injection, Summary Table conversion, Navigation setup.
+     */
+    (function() {
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
             
-            // Extract all status spans
-            const spans = Array.from(summaryData.querySelectorAll("span"));
-            if (spans.length > 0) {
-                const table = document.createElement("table");
-                table.className = "summary-table";
-                table.id = "summary-results-table";
-                
-                let rowsHTML = "";
-                
-                // 1. Process main summary text (usually first span or textNode)
-                const mainText = summaryData.innerText || summaryData.textContent;
-                const timeMatch = mainText.match(/(\d+\.?\d*)\s*(seconds|minutes|s|m)/i);
-                const countMatch = mainText.match(/(\d+)\s*tests/i);
+            // 1. Initialize UI Helper Functions
+            const createEl = (tag, className, html = '') => {
+                const el = document.createElement(tag);
+                if (className) el.className = className;
+                if (html) el.innerHTML = html;
+                return el;
+            };
 
-                if (countMatch) {
-                    rowsHTML += `<tr><td>TOTAL TESTS</td><td class="count-cell">${countMatch[1]}</td></tr>`;
+            // 2. Setup Dashboard Header
+            const header = createEl("header", "portfolio-header", `
+                <div class="header-container">
+                    <div class="header-logo">
+                        <span class="code-bracket">&lt;/&gt;</span> ANS422 <span>Automation Portfolio</span>
+                    </div>
+                    <nav class="header-nav">
+                        <a href="https://github.com/ans422/ecommerce-automation-framework" target="_blank">GitHub Repo</a>
+                        <a href="#portfolio-summary">Report Summary</a>
+                        <a href="#results-table">Detailed Results</a>
+                    </nav>
+                </div>
+            `);
+            body.insertBefore(header, body.firstChild);
+            
+            // 3. Encapsulate Main Content
+            const main = createEl("main", "portfolio-main");
+            Array.from(body.childNodes).forEach(node => {
+                if(node !== header && node.tagName !== 'SCRIPT') {
+                    main.appendChild(node);
                 }
-                if (timeMatch) {
-                    rowsHTML += `<tr><td>TOTAL RUNTIME</td><td class="count-cell">${timeMatch[1]} ${timeMatch[2]}</td></tr>`;
-                }
-
-                // 2. Process status breakdowns
-                spans.forEach(span => {
-                    const statusText = span.innerText || span.textContent;
-                    // Look for patterns like "5 passed", "1 failed" etc
-                    const parts = statusText.trim().split(/\s+/);
-                    if (parts.length >= 2 && !isNaN(parts[0])) {
-                        const count = parts[0];
-                        const label = parts.slice(1).join(" ").replace(/[\(\),]/g, "").trim();
-                        if (label.toLowerCase() !== "tests") {
-                            rowsHTML += `
-                                <tr class="${span.className}">
-                                    <td>${label.toUpperCase()}</td>
-                                    <td class="count-cell">${count}</td>
-                                </tr>
-                            `;
-                        }
-                    }
-                });
-
-                if (rowsHTML) {
-                    table.innerHTML = `
-                        <thead>
-                            <tr>
-                                <th>Test Metric</th>
-                                <th>Value / Count</th>
-                            </tr>
-                        </thead>
-                        <tbody>${rowsHTML}</tbody>
-                    `;
+            });
+            body.appendChild(main);
+            
+            // 4. Robust Summary Table Transformation
+            const summaryData = document.querySelector(".summary__data");
+            if (summaryData) {
+                const summaryContainer = document.querySelector(".summary");
+                if (summaryContainer) summaryContainer.id = "portfolio-summary";
+                
+                const spans = Array.from(summaryData.querySelectorAll("span"));
+                if (spans.length > 0) {
+                    const table = createEl("table", "summary-table");
+                    table.id = "summary-results-table";
                     
-                    // Transform UI and Inject Heading + Table
-                    summaryContainer.innerHTML = `
-                        <h2 class="report-summary-heading">Report Summary</h2>
-                        ${table.outerHTML}
-                    `;
+                    let rowsHTML = "";
+                    const fullText = summaryData.innerText || summaryData.textContent;
+                    
+                    // Extract Global Metrics
+                    const tMatch = fullText.match(/(\d+\.?\d*)\s*(seconds|minutes|s|m)/i);
+                    const cMatch = fullText.match(/(\d+)\s*tests/i);
+
+                    if (cMatch) rowsHTML += `<tr><td>TOTAL TESTS</td><td class="count-cell">${cMatch[1]}</td></tr>`;
+                    if (tMatch) rowsHTML += `<tr><td>TOTAL RUNTIME</td><td class="count-cell">${tMatch[1]} ${tMatch[2]}</td></tr>`;
+
+                    // Extract Status Breakdowns
+                    spans.forEach(span => {
+                        const text = span.innerText || span.textContent;
+                        const parts = text.trim().split(/\s+/);
+                        if (parts.length >= 2 && !isNaN(parts[0])) {
+                            const count = parts[0];
+                            const label = parts.slice(1).join(" ").replace(/[\(\),]/g, "").trim();
+                            if (label.toLowerCase() !== "tests") {
+                                rowsHTML += `
+                                    <tr class="${span.className}">
+                                        <td>${label.toUpperCase()}</td>
+                                        <td class="count-cell">${count}</td>
+                                    </tr>
+                                `;
+                            }
+                        }
+                    });
+
+                    if (rowsHTML) {
+                        table.innerHTML = `<thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>${rowsHTML}</tbody>`;
+                        summaryContainer.innerHTML = `
+                            <h2 class="report-summary-heading">Report Summary</h2>
+                            ${table.outerHTML}
+                        `;
+                    }
                 }
             }
-        }
 
-        // 4. Setup Portfolio Footer
-        const footer = document.createElement("footer");
-        footer.className = "portfolio-footer";
-        footer.innerHTML = `
-            <div class="footer-container">
-                <p>Designed for professional automation excellence. &copy; ${new Date().getFullYear()}</p>
-                <div class="footer-tech">Powered by Pytest &#9889; Selenium &#9889; GitHub Actions</div>
-            </div>
-        `;
-        body.appendChild(footer);
-    });
+            // 5. Setup Dashboard Footer
+            const footer = createEl("footer", "portfolio-footer", `
+                <div class="footer-container">
+                    <p>Designed for professional automation excellence. &copy; ${new Date().getFullYear()}</p>
+                    <div class="footer-tech">Powered by Pytest &#9889; Selenium &#9889; GitHub Actions</div>
+                </div>
+            `);
+            body.appendChild(footer);
+        });
+    })();
     </script>
     
         </div>
-        <p class="run-count">2 tests took 00:00:12.</p>
+        <p class="run-count">2 tests took 00:00:10.</p>
         <p class="filter">(Un)check the boxes to filter the results.</p>
         <div class="summary__reload">
           <div class="summary__reload__button hidden" onclick="location.reload()">
@@ -221,7 +213,7 @@
       </thead>
     </table>
   <footer>
-    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.13.12&#34;, &#34;Platform&#34;: &#34;Linux-6.17.0-1010-azure-x86_64-with-glibc2.39&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;9.0.3&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;metadata&#34;: &#34;3.1.1&#34;, &#34;xdist&#34;: &#34;3.8.0&#34;, &#34;html&#34;: &#34;4.2.0&#34;}, &#34;CI&#34;: &#34;true&#34;, &#34;JAVA_HOME&#34;: &#34;/usr/lib/jvm/temurin-17-jdk-amd64&#34;}, &#34;tests&#34;: {&#34;tests/test_login.py::test_invalid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_invalid_login&#34;, &#34;duration&#34;: &#34;00:00:11&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_invalid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:11&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;[gw1] linux -- Python 3.13.12 /opt/hostedtoolcache/Python/3.13.12/x64/bin/python\n&#34;}], &#34;tests/test_login.py::test_valid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_valid_login&#34;, &#34;duration&#34;: &#34;00:00:11&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_valid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:11&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;[gw0] linux -- Python 3.13.12 /opt/hostedtoolcache/Python/3.13.12/x64/bin/python\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.13.12&#34;, &#34;Platform&#34;: &#34;Linux-6.17.0-1010-azure-x86_64-with-glibc2.39&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;9.0.3&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;metadata&#34;: &#34;3.1.1&#34;, &#34;xdist&#34;: &#34;3.8.0&#34;, &#34;html&#34;: &#34;4.2.0&#34;}, &#34;CI&#34;: &#34;true&#34;, &#34;JAVA_HOME&#34;: &#34;/usr/lib/jvm/temurin-17-jdk-amd64&#34;}, &#34;tests&#34;: {&#34;tests/test_login.py::test_invalid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_invalid_login&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_invalid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;[gw1] linux -- Python 3.13.12 /opt/hostedtoolcache/Python/3.13.12/x64/bin/python\n&#34;}], &#34;tests/test_login.py::test_valid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_valid_login&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_valid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;[gw0] linux -- Python 3.13.12 /opt/hostedtoolcache/Python/3.13.12/x64/bin/python\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
     <script>
       (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')
