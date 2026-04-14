@@ -41,7 +41,52 @@ def pytest_html_results_summary(prefix, summary, postfix, session):
         });
         body.appendChild(main);
         
-        // 3. Setup Portfolio Footer
+        // 3. Transform Summary into a Table
+        const summaryData = document.querySelector(".summary__data");
+        if (summaryData) {
+            const summaryContainer = document.querySelector(".summary");
+            const spans = Array.from(summaryData.querySelectorAll("span"));
+            
+            const table = document.createElement("table");
+            table.className = "summary-table";
+            table.id = "summary-results-table";
+            
+            let tableHTML = `
+                <thead>
+                    <tr>
+                        <th>Status Category</th>
+                        <th>Record Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+            
+            spans.forEach(span => {
+                const text = span.innerText || span.textContent;
+                // Parse text like "2 passed" or "1 failed"
+                const parts = text.trim().split(" ");
+                if (parts.length >= 2) {
+                    const count = parts[0];
+                    const status = parts.slice(1).join(" ");
+                    const statusClass = span.className;
+                    tableHTML += `
+                        <tr class="${statusClass}">
+                            <td>${status.toUpperCase()}</td>
+                            <td class="count-cell">${count}</td>
+                        </tr>
+                    `;
+                }
+            });
+            
+            tableHTML += "</tbody>";
+            table.innerHTML = tableHTML;
+            
+            // Clear old summary data and append table
+            summaryData.style.display = "none"; 
+            summaryContainer.appendChild(table);
+        }
+
+        // 4. Setup Portfolio Footer
         const footer = document.createElement("footer");
         footer.className = "portfolio-footer";
         footer.innerHTML = `
