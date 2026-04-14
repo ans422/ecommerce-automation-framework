@@ -475,10 +475,11 @@ a:hover {
 h1 {
   font-size: 3.5rem; /* text-4xl ++ */
   font-weight: 800; /* font-extrabold */
-  margin-bottom: 2rem; /* mb-8 */
+  margin: 0 auto 2.5rem auto; /* Centered */
   letter-spacing: -0.025em; /* tracking-tight */
   display: flex;
   align-items: center;
+  text-align: center;
   background: linear-gradient(135deg, #10b981, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -493,34 +494,37 @@ h2 {
   font-weight: 600; /* font-bold */
   color: #f8fafc; /* text-slate-100 */
   margin-top: 3.5rem; /* mt-10 */
-  margin-bottom: 1.5rem; /* mb-6 */
+  margin-bottom: 2rem; /* mb-6 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 0.75rem; /* pb-3 */
+  text-align: center; /* Centered */
+  width: 100%;
 }
 
 /* Layout structures */
 .summary {
   display: grid;
   gap: 1rem;
-  padding: 1.5rem;
+  padding: 2.5rem;
   background-color: rgba(15, 23, 42, 0.4);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
 }
 
 .summary .summary__data {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* gap-4 */
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 500; /* font-medium */
+  gap: 1rem;
+  justify-content: center; /* Centered data chips */
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .summary .summary__data span {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.75rem;
   background-color: rgba(30, 41, 59, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: block;
@@ -658,6 +662,7 @@ table#results-table tbody tr:hover td {
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
   align-items: center;
+  justify-content: center; /* Centered buttons */
 }
 
 .filters button, .collapse button {
