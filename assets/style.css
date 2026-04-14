@@ -559,19 +559,17 @@ h2 {
 /* Environment Table Styling */
 table#environment {
   width: 100%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   background-color: rgba(15, 23, 42, 0.4);
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-spacing: 0;
-  color: #ffffff !important; /* Force white text */
 }
 table#environment th, table#environment td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
-  color: #ffffff !important;
 }
 table#environment th {
   background-color: rgba(30, 41, 59, 0.6);
@@ -580,8 +578,11 @@ table#environment th {
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
-
+table#environment td {
+  color: #cbd5e1 !important;
+}
 /* Tables */
 table#results-table {
   width: 100%;
@@ -609,14 +610,14 @@ table#results-table td {
   padding: 1.25rem 1.5rem;
   font-size: 0.875rem;
   color: #cbd5e1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle row separation */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.2s;
 }
 
 /* Table Rows by Status - Using slightly more vibrant accents */
-table#results-table tr.passed td { background-color: rgba(16, 185, 129, 0.03); } 
-table#results-table tr.failed td { background-color: rgba(244, 63, 94, 0.03); } 
-table#results-table tr.error td { background-color: rgba(245, 158, 11, 0.03); } 
+table#results-table tr.passed td { background-color: rgba(16, 185, 129, 0.05); } 
+table#results-table tr.failed td { background-color: rgba(244, 63, 94, 0.05); } 
+table#results-table tr.error td { background-color: rgba(245, 158, 11, 0.05); } 
 
 table#results-table tbody tr:hover td {
   background-color: rgba(255, 255, 255, 0.05); /* Clean hover effect */
@@ -631,11 +632,11 @@ table#results-table tbody tr:hover td {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-spacing: 0;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 #summary-results-table th, #summary-results-table td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
 }
 #summary-results-table th {
@@ -645,8 +646,8 @@ table#results-table tbody tr:hover td {
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-}
-#summary-results-table td.count-cell {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}#summary-results-table td.count-cell {
   font-family: 'Fira Code', monospace;
   font-weight: 600;
   color: #ffffff;
